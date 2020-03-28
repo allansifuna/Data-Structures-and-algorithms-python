@@ -4,13 +4,16 @@ Created on Sat March 21 12:03:56 2020
 
 @author: allan sifuna,https://github.com/allansifuna
 """
+
+
 def sum_of_lists(n):
-    if len(n)==1:
+    if len(n) == 1:
         return n[0]
     else:
-        return n[0]+sum_of_lists(n[1:])
+        return n[0] + sum_of_lists(n[1:])
 
-a=[3,5,6,7,4,5,4,3,2]
+
+a = [3, 5, 6, 7, 4, 5, 4, 3, 2]
 # print(sum_of_lists(a))
 
 # import turtle
@@ -30,6 +33,23 @@ def move_tower(height, from_pole, to_pole, with_pole):
         move_tower(height - 1, from_pole, with_pole, to_pole)
         move_disk(from_pole, to_pole)
         move_tower(height - 1, with_pole, to_pole, from_pole)
-def move_disk(fp,tp):
-    print("moving disk from",fp,"to",tp)
+
+
+def move_disk(fp, tp):
+    print("moving disk from", fp, "to", tp)
+
+
 move_tower(2, "A", "B", "C")
+
+
+def quickSort(arr):
+    if len(arr) < 2:
+        return arr
+    else:
+        pivot = arr[0]
+        less = [i for i in arr[1:] if i <= pivot]
+        more = [i for i in arr[1:] if i > pivot]
+        return quickSort(less) + [pivot] + quickSort(more)
+
+
+print(quickSort([8, 9, 3, 5, 6, 2, 7, 10, 0, 34]))

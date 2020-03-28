@@ -14,26 +14,29 @@ from unorderdlist import UnorderedList
 from orderedlist import OrderedList
 from binarytree import BinaryTree
 
-stack=Stack()
-queue=Queue()
-deque=Deque()
-lst=UnorderedList()
-olst=OrderedList()
+stack = Stack()
+queue = Queue()
+deque = Deque()
+lst = UnorderedList()
+olst = OrderedList()
 
 #===============
-#Testing a Stack
+# Testing a Stack
 #===============
 
-def populate(stack,string):
+
+def populate(stack, string):
     """Add the string to the stack"""
     for i in string:
         stack.push(i)
+
+
 def reverse(stack):
     """With LIFO the last character to be added
         to the stack will be the first to be read"""
-    new_string=" "
+    new_string = " "
     while not stack.is_empty():
-        new_string+=stack.peek()
+        new_string += stack.peek()
         stack.pop()
     return new_string
 
@@ -44,108 +47,127 @@ def reverse(stack):
 
 def Deci2Bin(n):
     """Populate the stack with remainders of the operation"""
-    while n>0:
-        stack.push(divmod(n,2)[1])
-        n//=2
+    while n > 0:
+        stack.push(divmod(n, 2)[1])
+        n //= 2
+
 
 def readDeci2Bin(stack):
     """Read the stack"""
-    s=""
+    s = ""
     while not stack.is_empty():
-        s+=str(stack.peek())
+        s += str(stack.peek())
         stack.pop()
 
     return s
 
-Deci2Bin(100)
-# print(stack.pop())
-print(stack)
 
-print(readDeci2Bin(stack))
+# Deci2Bin(100)
+# print(stack)
+# print(stack.removeDuplicates())
+
+# print(readDeci2Bin(stack))
 
 
 #===============
-#Testing a Queue
+# Testing a Queue
 #===============
 
-def hot_potato(lst,num):
+def hot_potato(lst, num):
     for i in lst:
         queue.enqueue(i)
 
     return queue
 
 #===============
-#Testing a Deque
+# Testing a Deque
 #===============
-def populate_deque(deque,string):
+
+
+def populate_deque(deque, string):
     for i in string:
         deque.add_front(i)
     return deque
+
+
 def check_palindrome(queue):
-    while queue.size()>1:
-        if queue.remove_rear()!=queue.remove_front():
+    while queue.size() > 1:
+        if queue.remove_rear() != queue.remove_front():
             return False
     return True
 # dq=populate_deque(deque,"allanalla")
 # print(check_palindrome(dq))
 
+
 #============
-#Testing Node
+# Testing Node
 #============
-a=Node(10)
-b=Node(12)
+a = Node(10)
+b = Node(12)
 a.set_next(b)
 
 # print(a.get_next())
 
 #=====================
-#Testing Unorderedlist
+# Testing Unorderedlist
 #=====================
 lst.add(20)
 lst.add(23)
 lst.add(120)
 lst.add(8)
+lst.add(120)
+lst.add(8)
 lst.add(198)
-# print(lst.reverse())
-# print()
-# print(lst.reverse())
-# print(lst.size())
+lst.add(20)
+lst.add(23)
+lst.add(20)
+lst.add(23)
+lst.add(20)
+lst.add(23)
+print(lst)
+print()
+print(lst.reverse(3))
+print(lst.size())
 
 #=====================
-#Testing Orderedlist
+# Testing Orderedlist
 #=====================
 olst.add(20)
 olst.add(23)
 olst.add(120)
 olst.add(8)
 olst.add(198)
-# v=olst
+olst.add(8)
+olst.add(198)
+olst.add(8)
+olst.add(198)
 # print(olst.size())
-# print(v.reverse())
-# print(olst)
+# print(olst.reverse())
+# print(olst.removeDuplicate())
 
 #====================
-#Testing A BinaryTree
+# Testing A BinaryTree
 #====================
 
-r=BinaryTree(10)
-r.insert_left_child(12)
-r.insert_right_child(15)
-r.get_left_child_val().insert_left_child('b')
+# r = BinaryTree(10)
+# r.insert_left_child(12)
+# r.insert_right_child(15)
+# r.get_left_child_val().insert_left_child('b')
 # print(r.get_left_child_val().get_left_child_val().get_root_val())
 
-def binarySearch(l,item):
-    low,high=0,len(l)-1
-    while low<=high:
-        mid=(low+high)//2
+
+def binarySearch(l, item):
+    low, high = 0, len(l) - 1
+    while low <= high:
+        mid = (low + high) // 2
         # print(f"low:{low},{mid},high:{high}")
-        guess=l[mid]
-        if guess==item:
+        guess = l[mid]
+        if guess == item:
             return mid
-        if guess>item:
-            high=mid-1
+        if guess > item:
+            high = mid - 1
         else:
-            low=mid+1
+            low = mid + 1
     return None
 
 # a=[i for i in range(10**2)]
@@ -164,6 +186,8 @@ def binarySearch(l,item):
 #         else:
 #             low=mid+1
 #     return None
+
+
 def findSmallest(arr):
     smallest = arr[0]
     smallest_index = 0
@@ -172,6 +196,8 @@ def findSmallest(arr):
             smallest = arr[i]
             smallest_index = i
     return smallest_index
+
+
 def selectionSort(arr):
     newArr = []
     for i in range(len(arr)):
@@ -180,15 +206,20 @@ def selectionSort(arr):
         smallest = findSmallest(arr)
         newArr.append(arr.pop(smallest))
     return newArr
+
+
 from time import perf_counter
+
+
 def quickSort(arr):
-    if len(arr)<2:
+    if len(arr) < 2:
         return arr
     else:
-        pivot=arr[0]
-        left=[i for i in arr[1:] if i<=pivot]
-        right=[i for i in arr[1:] if i>pivot]
-        return quickSort(left)+[pivot]+quickSort(right)
+        pivot = arr[0]
+        left = [i for i in arr[1:] if i <= pivot]
+        right = [i for i in arr[1:] if i > pivot]
+        return quickSort(left) + [pivot] + quickSort(right)
+
 
 from random import shuffle
 
