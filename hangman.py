@@ -22,7 +22,7 @@ while life>0:
     a=input("Guess a letter\n")
     if a in name:
         if a not in guess:
-            print("You guessed write")
+            print("You guessed right")
             guess=guess+a
     else:
         life-=1
